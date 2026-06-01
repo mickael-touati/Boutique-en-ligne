@@ -39,7 +39,6 @@ $user = $_SESSION['user'];
             <button class="active">Mon profil</button>
             <button>Mes commandes</button>
             <button>Mon panier</button>
-            <button>Mes adresses</button>
             <a href="../auth/logout.php" class="btn-exit">Se déconnecter</a>
         </nav>
 
