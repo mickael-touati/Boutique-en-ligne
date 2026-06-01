@@ -1,0 +1,42 @@
+<?php
+namespace App\Controllers;
+use App\Models\User;
+
+class AuthController {
+    private $userModel;
+
+    public function __construct($db) {
+        $this->userModel = new User($db);
+    }
+
+    public function register() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = htmlspecialchars($_POST['name']);
+            $mail = htmlspecialchars($_POST['mail']);
+            $password = $_POST['password'];
+            $confirm = $_POST['confirm_password'];
+
+            if ($password === $confirm) {
+                if ($this->userModel->register($name, $mail, $password)) {
+                    header('Location: login.php');
+                    exit();
+                }
+            }
+        }
+    }
+
+    public function login() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mail = htmlspecialchars($_POST['mail']);
+            $password = $_POST['password'];
+            $user = $this->userModel->findByMail($mail);
+
+            if ($user && password_verify($password, $user['password'])) {
+                session_start();
+                $_SESSION['user'] = $user;
+                header('Location: profile.php');
+                exit();
+            }
+        }
+    }
+}

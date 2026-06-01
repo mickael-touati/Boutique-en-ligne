@@ -1,19 +1,25 @@
 <?php
 class Database {
+
     private $host = 'gabriel-sempere.students-laplateforme.io';
     private $dbname = 'gabriel-sempere_rshop';
     private $username = 'shop_user';
-    private $password = 'v$68a3lR2';
+    private $password;
     public $pdo;
 
     public function __construct() {
+
+        $env = parse_ini_file(__DIR__ . '/../../../.env');
+
+        $this->password = $env['DB_PASS'];
+
         $this->connect();
     }
 
     public function connect() {
         try {
             $this->pdo = new \PDO(
-                "mysql:host=$this->host;dbname=$this->dbname;charset=utf8",
+                "mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
                 $this->username,
                 $this->password
             );
@@ -27,5 +33,6 @@ class Database {
         return $this->pdo;
     }
 }
+
 $db = new Database();
 ?>
