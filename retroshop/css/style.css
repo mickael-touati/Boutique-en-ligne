@@ -169,6 +169,13 @@ body {
   background: var(--accent-hover);
 }
 
+.carte-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: var(--fond-de-page);
+}
+
 .footer {
   background: var(--texte-principale);
   color:#F4F6F8;
@@ -192,4 +199,117 @@ body {
 
 .footer nav a:hover {
   color: white;
+}
+
+/* BOUTIQUE */
+.boutique {
+  display: flex;
+  gap: 20px;
+  padding: 24px 16px;
+}
+
+.filtres {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.filtres-titre {
+  font-family: var(--font-title);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.filtres-liste {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filtres-liste a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--texte-principale);
+  text-decoration: none;
+}
+
+.filtres-liste a:hover {
+  background: #e8edf5;
+}
+
+.filtres-liste a.actif {
+  background: var(--accent);
+  color: var(--conteneur);
+}
+
+.boutique-contenu {
+  flex: 1;
+}
+
+.recherche {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--conteneur);
+  margin-bottom: 16px;
+  outline: none;
+}
+
+.header_logo {
+  text-decoration: none;
+}
+
+/* DETAIL PRODUIT */
+.detail {
+  display: flex;
+  gap: 40px;
+  padding: 32px 16px;
+  align-items: flex-start;
+}
+
+.detail-img {
+  flex: 1;
+}
+
+.detail-img img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+  max-height: 400px;
+}
+
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-nom {
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--texte-principale);
+}
+
+.detail-prix {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-desc {
+  font-size: 14px;
+  color: var(--description-du-texte);
+  line-height: 1.6;
+}
+
+.detail-stock {
+  font-size: 13px;
+  color: var(--description-du-texte);
 }
