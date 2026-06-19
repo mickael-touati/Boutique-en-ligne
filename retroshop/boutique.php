@@ -47,32 +47,35 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <li><a href="boutique.php" <?php if (!$categorie_id) echo 'class="actif"'; ?>>Tout</a></li>
       <?php foreach ($categories as $cat) : ?>
         <li>
-        <a href="boutique.php?categorie=<?php echo $cat['id']; ?>"
-          <?php if ($categorie_id == $cat['id']) echo 'class="actif"'; ?>>
-          <?php echo $cat['name']; ?>
-        </a>
+          <a href="boutique.php?categorie=<?php echo $cat['id']; ?>"
+            <?php if ($categorie_id == $cat['id']) echo 'class="actif"'; ?>>
+            <?php echo $cat['name']; ?>
+          </a>
         </li>
       <?php endforeach; ?>
     </ul>
   </aside>
 
   <div class="boutique-contenu">
-    <input class="recherche" type="search" placeholder="Rechercher un produit...">
+    <div class="recherche-wrap">
+      <input class="recherche" type="text" id="recherche" placeholder="Rechercher un produit...">
+      <div class="suggestions" id="suggestions"></div>
+    </div>
     <div class="grille">
       <?php foreach ($produits as $produit) : ?>
         <div class="carte">
-        <div class="carte-img">
-          <img src="<?php echo $produit['image']; ?>" alt="<?php echo $produit['name']; ?>">
-          <?php if ($produit['promo']) : ?>
-            <span class="promo">Promo</span>
-          <?php endif; ?>
+          <div class="carte-img">
+            <img src="<?php echo $produit['image']; ?>" alt="<?php echo $produit['name']; ?>">
+            <?php if ($produit['promo']) : ?>
+              <span class="promo">Promo</span>
+            <?php endif; ?>
+          </div>
+          <div class="carte-info">
+            <h3 class="carte-nom"><?php echo $produit['name']; ?></h3>
+            <p class="carte-prix"><?php echo $produit['price']; ?> €</p>
+            <a href="produit.php?id=<?php echo $produit['id']; ?>" class="carte-btn">Voir le produit</a>
+          </div>
         </div>
-        <div class="carte-info">
-          <h3 class="carte-nom"><?php echo $produit['name']; ?></h3>
-          <p class="carte-prix"><?php echo $produit['price']; ?> €</p>
-          <a href="produit.php?id=<?php echo $produit['id']; ?>" class="carte-btn">Voir le produit</a>
-        </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -87,6 +90,46 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="">Contact</a>
   </nav>
 </footer>
+
+<script>
+var input = document.getElementById('recherche');
+var suggestions = document.getElementById('suggestions');
+
+input.addEventListener('input', function() {
+  var q = input.value;
+
+  if (q.length < 2) {
+    suggestions.style.display = 'none';
+    return;
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'recherche.php?q=' + q);
+  xhr.onload = function() {
+    var produits = JSON.parse(xhr.responseText);
+    suggestions.innerHTML = '';
+
+    if (produits.length == 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    for (var i = 0; i < produits.length; i++) {
+      var produit = produits[i];
+      var a = document.createElement('a');
+      a.href = 'produit.php?id=' + produit.id;
+      a.className = 'suggestion-item';
+      a.innerHTML = '<img src="' + produit.image + '" alt="' + produit.name + '">'
+                  + '<span>' + produit.name + '</span>'
+                  + '<span>' + produit.price + ' €</span>';
+      suggestions.appendChild(a);
+    }
+
+    suggestions.style.display = 'block';
+  };
+  xhr.send();
+});
+</script>
 
 </body>
 </html>

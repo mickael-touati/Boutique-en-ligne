@@ -247,6 +247,7 @@ body {
 
 .boutique-contenu {
   flex: 1;
+  position: relative;
 }
 
 .recherche {
@@ -312,4 +313,42 @@ body {
 .detail-stock {
   font-size: 13px;
   color: var(--description-du-texte);
+}
+
+.recherche-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--conteneur);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: none;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--texte-principale);
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:hover {
+  background: var(--fond-de-page);
+}
+
+.suggestion-item img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
