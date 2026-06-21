@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../app/views/config/database.php';
 
-$db = new Database();
 $pdo = $db->getConnection();
 
 $id = $_GET['id'];
@@ -29,7 +28,7 @@ $produit = $stmt->fetch(PDO::FETCH_ASSOC);
   <nav class="header-nav" aria-label="Navigation principale">
     <a href="boutique.php">Boutique</a>
     <a href="#">Panier</a>
-    <a href="#">Connexion</a>
+    <a href="../app/views/auth/login.php">Connexion</a>
   </nav>
 </header>
 

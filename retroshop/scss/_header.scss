@@ -1,0 +1,38 @@
+@use 'variable' as *;
+
+.header {
+  background: $conteneur;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header_logo {
+  font-family: $font-title;
+  font-size: 20px;
+  font-weight: 700;
+  color: $accent;
+  text-decoration: none;
+}
+
+.header_logo span {
+  color: $accent-orange;
+}
+
+.header_nav {
+  display: flex;
+  gap: 18px;
+
+  a {
+    color: $texte-principale;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: $accent-hover;
+    }
+  }
+}

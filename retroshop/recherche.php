@@ -1,14 +1,13 @@
 <?php
 require_once __DIR__ . '/../app/views/config/database.php';
 
-$db = new Database();
 $pdo = $db->getConnection();
 
 $q = $_GET['q'];
+$recherche = '%' . $q . '%';
 
 $stmt = $pdo->prepare("SELECT id, name, price, image FROM article WHERE name LIKE ?");
-$stmt->execute(['%' . $q . '%']);
+$stmt->execute([$recherche]);
 $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-header('Content-Type: application/json');
 echo json_encode($produits);

@@ -1,0 +1,62 @@
+@use 'variable' as *;
+
+/* BOUTIQUE */
+.boutique {
+  display: flex;
+  gap: 20px;
+  padding: 24px 16px;
+
+  &-contenu {
+    flex: 1;
+  }
+}
+
+.filtres {
+  width: 180px;
+  flex-shrink: 0;
+
+  &-titre {
+    font-family: $font-title;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: $texte-principale;
+  }
+
+  &-liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: $texte-principale;
+      text-decoration: none;
+
+      &:hover {
+        background: #e8edf5;
+      }
+
+      &.actif {
+        background: $accent;
+        color: $conteneur;
+      }
+    }
+  }
+}
+
+.recherche {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: $conteneur;
+  margin-bottom: 16px;
+  outline: none;
+  color: $texte-principale;
+}

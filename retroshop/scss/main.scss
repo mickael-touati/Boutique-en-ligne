@@ -1,0 +1,20 @@
+@use 'variable' as *;
+@use 'header';
+@use 'banniere';
+@use 'produits';
+@use 'details';
+@use 'boutique';
+@use 'responsive';
+@use 'footer';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-body;
+  background: $fond-de-page;
+  color: $texte-principale;
+}

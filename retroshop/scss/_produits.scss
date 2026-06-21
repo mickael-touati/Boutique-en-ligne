@@ -1,0 +1,79 @@
+@use 'variable' as *;
+
+.produits {
+  padding: 24px 16px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    a {
+      font-size: 13px;
+      color: $accent;
+      text-decoration: none;
+    }
+  }
+
+  &-titre {
+    font-family: $font-title;
+    font-size: 18px;
+    font-weight: 700;
+    color: $texte-principale;
+  }
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.carte {
+  background: $conteneur;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+
+  &-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: $fond-de-page;
+  }
+
+  &-info {
+    padding: 10px;
+  }
+
+  &-nom {
+    font-size: 13px;
+    font-weight: 500;
+    color: $texte-principale;
+    margin-bottom: 4px;
+  }
+
+  &-prix {
+    font-size: 15px;
+    font-weight: 700;
+    color: $accent;
+    margin-bottom: 10px;
+  }
+
+  &-btn {
+    display: block;
+    text-align: center;
+    background: $accent;
+    color: $conteneur;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+
+    &:hover {
+      background: $accent-hover;
+    }
+  }
+}

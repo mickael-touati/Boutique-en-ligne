@@ -1,0 +1,26 @@
+@use 'variable' as *;
+
+.footer {
+  background: $texte-principale;
+  color: $fond-de-page;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+  font-size: 13px;
+
+  nav {
+    display: flex;
+    gap: 16px;
+
+    a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}

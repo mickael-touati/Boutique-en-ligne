@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../app/views/config/database.php';
 
-$db = new Database();
 $pdo = $db->getConnection();
 
 $categories = $pdo->query("SELECT * FROM category")->fetchAll(PDO::FETCH_ASSOC);
@@ -35,7 +34,7 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <nav class="header_nav" aria-label="Navigation principale">
         <a href="boutique.php">Boutique</a>
         <a href="">Panier</a>
-        <a href="">Connexion</a>
+        <a href="../app/views/auth/login.php">Connexion</a>
       </nav>
 </header>
 
@@ -92,42 +91,46 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </footer>
 
 <script>
-var input = document.getElementById('recherche');
-var suggestions = document.getElementById('suggestions');
+const input = document.getElementById('recherche');
+const suggestions = document.getElementById('suggestions');
 
 input.addEventListener('input', function() {
-  var q = input.value;
 
-  if (q.length < 2) {
-    suggestions.style.display = 'none';
-    return;
-  }
+    let q = input.value;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'recherche.php?q=' + q);
-  xhr.onload = function() {
-    var produits = JSON.parse(xhr.responseText);
-    suggestions.innerHTML = '';
-
-    if (produits.length == 0) {
-      suggestions.style.display = 'none';
-      return;
+    if (q.length < 2) {
+        suggestions.style.display = 'none';
+        return;
     }
 
-    for (var i = 0; i < produits.length; i++) {
-      var produit = produits[i];
-      var a = document.createElement('a');
-      a.href = 'produit.php?id=' + produit.id;
-      a.className = 'suggestion-item';
-      a.innerHTML = '<img src="' + produit.image + '" alt="' + produit.name + '">'
-                  + '<span>' + produit.name + '</span>'
-                  + '<span>' + produit.price + ' €</span>';
-      suggestions.appendChild(a);
-    }
+    fetch('recherche.php?q=' + q)
+        .then(function(reponse) {
+            return reponse.json();
+        })
+        .then(function(produits) {
 
-    suggestions.style.display = 'block';
-  };
-  xhr.send();
+            suggestions.innerHTML = '';
+
+            if (produits.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            for (let i = 0; i < produits.length; i++) {
+
+                let produit = produits[i];
+
+                let lien = document.createElement('a');
+
+                lien.href = 'produit.php?id=' + produit.id;
+                lien.className = 'suggestion-item';
+                lien.innerHTML = produit.name + ' — ' + produit.price + ' €';
+
+                suggestions.appendChild(lien);
+            }
+
+            suggestions.style.display = 'block';
+        });
 });
 </script>
 

@@ -1,0 +1,43 @@
+@use 'variable' as *;
+
+/* DESKTOP */
+@media (min-width: 768px) {
+
+  .header {
+    padding: 16px 40px;
+  }
+
+  .banniere {
+    padding: 80px 40px;
+
+    &_titre {
+      font-size: 40px;
+    }
+
+    &_description {
+      font-size: 16px;
+      max-width: 600px;
+    }
+  }
+
+  .produits {
+    padding: 40px;
+  }
+
+  .grille {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .boutique {
+    padding: 40px;
+  }
+
+  .detail {
+    padding: 40px;
+    gap: 60px;
+  }
+
+  .footer {
+    padding: 24px 40px;
+  }
+}
