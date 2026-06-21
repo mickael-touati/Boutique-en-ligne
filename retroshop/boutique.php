@@ -1,19 +1,40 @@
 <?php
-require_once __DIR__ . '/../app/views/config/database.php';
+session_start();
+require_once "../app/views/config/database.php";
 
 $pdo = $db->getConnection();
 
-$categories = $pdo->query("SELECT * FROM category")->fetchAll(PDO::FETCH_ASSOC);
+$requeteCategories = $pdo->query("SELECT * FROM category");
+$categories = array();
 
-$categorie_id = isset($_GET['categorie']) ? $_GET['categorie'] : null;
-
-if ($categorie_id) {
-    $stmt = $pdo->prepare("SELECT * FROM article WHERE category_id = ?");
-    $stmt->execute([$categorie_id]);
-} else {
-    $stmt = $pdo->query("SELECT * FROM article");
+while ($ligne = $requeteCategories->fetch(PDO::FETCH_ASSOC)) {
+    $categories[] = $ligne;
 }
-$produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$categorie_id = null;
+
+if (isset($_GET["categorie"])) {
+    $categorie_id = $_GET["categorie"];
+}
+
+$produits = array();
+
+if ($categorie_id != null) {
+
+    $requeteProduits = $pdo->prepare(
+        "SELECT * FROM article WHERE category_id = ?"
+    );
+
+    $requeteProduits->execute(array($categorie_id));
+} else {
+    $requeteProduits = $pdo->query(
+        "SELECT * FROM article"
+    );
+}
+
+while ($ligne = $requeteProduits->fetch(PDO::FETCH_ASSOC)) {
+    $produits[] = $ligne;
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +52,18 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <header class="header">
     <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
-      <nav class="header_nav" aria-label="Navigation principale">
-        <a href="boutique.php">Boutique</a>
-        <a href="">Panier</a>
-        <a href="../app/views/auth/login.php">Connexion</a>
-      </nav>
+    <nav class="header_nav" aria-label="Navigation principale">
+      <a href="boutique.php">Boutique</a>
+      <a href="#">Panier</a>
+      <?php if (isset($_SESSION['user'])) { ?>
+          <a href="../app/views/auth/profile.php">Mon profil</a>
+      <?php } else { ?>
+          <a href="../app/views/auth/login.php">Connexion</a>
+      <?php } ?>
+      <?php if (isset($_SESSION['admin'])) { ?>
+          <a href="../admin/dashboard.php">Admin</a>
+      <?php } ?>
+    </nav>
 </header>
 
 <main class="boutique">

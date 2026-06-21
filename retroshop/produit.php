@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../app/views/config/database.php';
 
 $pdo = $db->getConnection();
@@ -24,12 +25,19 @@ $produit = $stmt->fetch(PDO::FETCH_ASSOC);
 <body>
 
 <header class="header">
-  <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
-  <nav class="header-nav" aria-label="Navigation principale">
-    <a href="boutique.php">Boutique</a>
-    <a href="#">Panier</a>
-    <a href="../app/views/auth/login.php">Connexion</a>
-  </nav>
+    <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
+    <nav class="header_nav" aria-label="Navigation principale">
+      <a href="boutique.php">Boutique</a>
+      <a href="#">Panier</a>
+      <?php if (isset($_SESSION['user'])) { ?>
+          <a href="../app/views/auth/profile.php">Mon profil</a>
+      <?php } else { ?>
+          <a href="../app/views/auth/login.php">Connexion</a>
+      <?php } ?>
+      <?php if (isset($_SESSION['admin'])) { ?>
+          <a href="../admin/dashboard.php">Admin</a>
+      <?php } ?>
+    </nav>
 </header>
 
 <main class="detail">
