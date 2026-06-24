@@ -1,6 +1,5 @@
 @use 'variable' as *;
 
-/* DETAIL PRODUIT */
 .detail {
   display: flex;
   gap: 40px;
@@ -63,6 +62,30 @@
   padding: 4px 10px;
   border-radius: 4px;
   display: inline-block;
+}
+
+.quantite-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $texte-principale;
+  }
+
+  input {
+    width: 70px;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: $texte-principale;
+    background: $fond-de-page;
+    outline: none;
+  }
 }
 
 /* RECHERCHE */

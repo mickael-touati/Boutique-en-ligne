@@ -26,7 +26,7 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
     <nav class="header_nav" aria-label="Navigation principale">
       <a href="boutique.php">Boutique</a>
-      <a href="#">Panier</a>
+      <a href="panier.php">Panier</a>
       <?php if (isset($_SESSION['user'])) { ?>
           <a href="../app/views/auth/profile.php">Mon profil</a>
       <?php } else { ?>
@@ -65,7 +65,7 @@ $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="carte-info">
           <h3 class="carte-nom"><?php echo $produit['name']; ?></h3>
           <p class="carte-prix"><?php echo $produit['price']; ?> €</p>
-          <a href="#" class="carte-btn">Acheter</a>
+          <a href="produit.php?id=<?php echo $produit['id']; ?>" class="carte-btn">Voir le produit</a>
         </div>
       </div>
     <?php endforeach; ?>

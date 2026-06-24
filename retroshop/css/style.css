@@ -135,7 +135,6 @@
   background: #005BEA;
 }
 
-/* DETAIL PRODUIT */
 .detail {
   display: flex;
   gap: 40px;
@@ -191,6 +190,28 @@
   padding: 4px 10px;
   border-radius: 4px;
   display: inline-block;
+}
+
+.quantite-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.quantite-wrap label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A1D20;
+}
+.quantite-wrap input {
+  width: 70px;
+  padding: 8px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1A1D20;
+  background: #F4F6F8;
+  outline: none;
 }
 
 /* RECHERCHE */
@@ -329,6 +350,92 @@
     padding: 24px 40px;
   }
 }
+.panier {
+  padding: 32px 16px;
+}
+.panier-titre {
+  font-family: "Lexend", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1D20;
+  margin-bottom: 24px;
+}
+.panier-vide {
+  font-size: 16px;
+  color: #6C757D;
+  text-align: center;
+  padding: 40px;
+}
+.panier-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.panier-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+}
+.panier-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: #F4F6F8;
+  border-radius: 8px;
+}
+.panier-item-info {
+  flex: 1;
+}
+.panier-item-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A1D20;
+  margin-bottom: 4px;
+}
+.panier-item-info p {
+  font-size: 14px;
+  color: #6C757D;
+}
+.panier-item-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.panier-item-total p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00439C;
+}
+.panier-item-total a {
+  font-size: 13px;
+  color: #FF4500;
+  text-decoration: none;
+}
+.panier-item-total a:hover {
+  text-decoration: underline;
+}
+.panier-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+}
+.panier-total h2 {
+  font-family: "Lexend", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1D20;
+}
+
 .footer {
   background: #1A1D20;
   color: #F4F6F8;

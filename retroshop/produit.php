@@ -28,7 +28,7 @@ $produit = $stmt->fetch(PDO::FETCH_ASSOC);
     <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
     <nav class="header_nav" aria-label="Navigation principale">
       <a href="boutique.php">Boutique</a>
-      <a href="#">Panier</a>
+      <a href="panier.php">Panier</a>
       <?php if (isset($_SESSION['user'])) { ?>
           <a href="../app/views/auth/profile.php">Mon profil</a>
       <?php } else { ?>
@@ -54,7 +54,14 @@ $produit = $stmt->fetch(PDO::FETCH_ASSOC);
     <p class="detail-prix"><?php echo $produit['price']; ?> €</p>
     <p class="detail-desc"><?php echo $produit['description']; ?></p>
     <p class="detail-stock">Stock disponible : <?php echo $produit['stock']; ?></p>
-    <a href="#" class="carte-btn">Ajouter au panier</a>
+    <form action="panier-ajouter.php" method="GET">
+    <input type="hidden" name="id" value="<?php echo $produit['id']; ?>">
+    <div class="quantite-wrap">
+        <label for="quantite">Quantité :</label>
+        <input type="number" name="quantite" id="quantite" value="1" min="1" max="<?php echo $produit['stock']; ?>">
+    </div>
+    <button type="submit" class="carte-btn">Ajouter au panier</button>
+</form>
   </div>
 
 </main>

@@ -54,7 +54,7 @@ while ($ligne = $requeteProduits->fetch(PDO::FETCH_ASSOC)) {
     <a href="index.php" class="header_logo">Retro<span>Shop</span></a>
     <nav class="header_nav" aria-label="Navigation principale">
       <a href="boutique.php">Boutique</a>
-      <a href="#">Panier</a>
+      <a href="panier.php">Panier</a>
       <?php if (isset($_SESSION['user'])) { ?>
           <a href="../app/views/auth/profile.php">Mon profil</a>
       <?php } else { ?>
